@@ -202,6 +202,7 @@
 
 		init_paper : function(container) {
 			this._paper = new Raphael(container, 320, 200);
+			this._paper.clear();
 		},
 
 		init_font : function() {},
@@ -621,9 +622,38 @@
 		}
 	});
 
+/******************
+ * MyRaphaelTheme
+ ******************/
+
+	var MyRaphaelTheme = function(diagram) {
+		this.init(diagram);
+	};
+
+	_.extend(MyRaphaelTheme.prototype, BaseTheme.prototype, {
+
+		init_font : function() {
+			this._font = {
+				'font-size': 16,
+				'font-family': 'Andale Mono, monospace'
+			};
+		}, 
+
+		draw_rect : function(x, y, w, h) {
+
+			var r = this._paper.rect(x, y, w, h, 5);
+			r.attr({fill: "#f00"});
+
+			return  r;
+		}
+
+	});
+
+
 	var themes = {
 		simple : RaphaelTheme,
-		hand  : HandRaphaelTheme
+		hand  : HandRaphaelTheme,
+		custom: MyRaphaelTheme
 	};
 
 	Diagram.prototype.drawSVG = function (container, options) {
