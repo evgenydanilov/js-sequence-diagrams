@@ -40,7 +40,7 @@
 
 	var LINE = {
 		'stroke': '#000',
-		'stroke-width': 2
+		'stroke-width': 1
 	};
 
 	var RECT = {
@@ -410,6 +410,7 @@
 					aX, y + self._actors_height - ACTOR_MARGIN,
 					aX, y + self._actors_height + ACTOR_MARGIN + self._signals_height);
 				line.attr(LINE);
+				line.attr({'stroke-dasharray': "--"});
 			});
 		},
 
@@ -538,9 +539,9 @@
 				t.attr(f);
 			}
 			// draw a rect behind it
-			var bb = t.getBBox();
-			var r = paper.rect(bb.x, bb.y, bb.width, bb.height);
-			r.attr({'fill': "#fff", 'stroke': 'none'});
+			// var bb = t.getBBox();
+			// var r = paper.rect(bb.x, bb.y, bb.width, bb.height);
+			// r.attr({'fill': "#fff", 'stroke': 'none'});
 
 			t.toFront();
 		},
@@ -634,18 +635,19 @@
 
 		init_font : function() {
 			this._font = {
-				'font-size': 16,
-				'font-family': 'Andale Mono, monospace'
+				'font-size': 12,
+				'font-family': "'Myriad Pro', Calibri, Helvetica, Arial, sans-serif"
 			};
 		}, 
 
 		draw_rect : function(x, y, w, h) {
 
-			var r = this._paper.rect(x, y, w, h, 5);
-			r.attr({fill: "#f00"});
+			var r = this._paper.rect(x, y, w, h, 4);
+			r.attr({fill: "#c8e0e8"});
+			r.attr({"stroke-width": 1});
 
 			return  r;
-		}
+		},
 
 	});
 
